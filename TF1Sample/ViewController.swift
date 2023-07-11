@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     }
 
     func loadWidgetModelToShowCustomWidget(){
-        self.sdk?.getWidgetModel(id: "a93edd55-44d0-4c17-a309-2281f4e0ac74", kind: WidgetKind.textPoll){ [self] result in
+        self.sdk?.getWidgetModel(id: "9465eebc-7a3f-4a89-a2e2-76b4dc6f5ff8", kind: WidgetKind.textPoll){ [self] result in
             handleResult(result: result)
         }
         
