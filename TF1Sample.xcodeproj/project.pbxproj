@@ -22,6 +22,11 @@
 		DF0961512A5D254A00559857 /* PollWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF09614E2A5D254A00559857 /* PollWidgetViewModel.swift */; };
 		DF0961522A5D254A00559857 /* CustomTextChoiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF09614F2A5D254A00559857 /* CustomTextChoiceWidgetView.swift */; };
 		DF0961532A5D254A00559857 /* CustomTextPollWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0961502A5D254A00559857 /* CustomTextPollWidgetViewController.swift */; };
+		DF82D6AB2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6AA2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift */; };
+		DF82D6AD2A6A355100E2DA66 /* CustomTextAskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6AC2A6A355100E2DA66 /* CustomTextAskView.swift */; };
+		DF82D6AF2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6AE2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift */; };
+		DF82D6B12A6A3A7F00E2DA66 /* WidgetTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6B02A6A3A7F00E2DA66 /* WidgetTitleView.swift */; };
+		DF82D6B32A6A3AD600E2DA66 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6B22A6A3AD600E2DA66 /* UIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +72,11 @@
 		DF09614E2A5D254A00559857 /* PollWidgetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollWidgetViewModel.swift; sourceTree = "<group>"; };
 		DF09614F2A5D254A00559857 /* CustomTextChoiceWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextChoiceWidgetView.swift; sourceTree = "<group>"; };
 		DF0961502A5D254A00559857 /* CustomTextPollWidgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextPollWidgetViewController.swift; sourceTree = "<group>"; };
+		DF82D6AA2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextAskWidgetViewController.swift; sourceTree = "<group>"; };
+		DF82D6AC2A6A355100E2DA66 /* CustomTextAskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextAskView.swift; sourceTree = "<group>"; };
+		DF82D6AE2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextAskWidgetViewController.swift; sourceTree = "<group>"; };
+		DF82D6B02A6A3A7F00E2DA66 /* WidgetTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTitleView.swift; sourceTree = "<group>"; };
+		DF82D6B22A6A3AD600E2DA66 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +155,7 @@
 		DF09611C2A5C82FF00559857 /* TF1Sample */ = {
 			isa = PBXGroup;
 			children = (
+				DF82D6A92A6A33B800E2DA66 /* textask */,
 				DF09614D2A5D254A00559857 /* textPoll */,
 				DF09611D2A5C82FF00559857 /* AppDelegate.swift */,
 				DF09611F2A5C82FF00559857 /* SceneDelegate.swift */,
@@ -153,6 +164,7 @@
 				DF0961262A5C830200559857 /* Assets.xcassets */,
 				DF0961282A5C830200559857 /* LaunchScreen.storyboard */,
 				DF09612B2A5C830200559857 /* Info.plist */,
+				DF82D6B22A6A3AD600E2DA66 /* UIView.swift */,
 			);
 			path = TF1Sample;
 			sourceTree = "<group>";
@@ -182,6 +194,17 @@
 				DF0961502A5D254A00559857 /* CustomTextPollWidgetViewController.swift */,
 			);
 			path = textPoll;
+			sourceTree = "<group>";
+		};
+		DF82D6A92A6A33B800E2DA66 /* textask */ = {
+			isa = PBXGroup;
+			children = (
+				DF82D6AA2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift */,
+				DF82D6AC2A6A355100E2DA66 /* CustomTextAskView.swift */,
+				DF82D6AE2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift */,
+				DF82D6B02A6A3A7F00E2DA66 /* WidgetTitleView.swift */,
+			);
+			path = textask;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,10 +448,15 @@
 			files = (
 				DF0961222A5C82FF00559857 /* ViewController.swift in Sources */,
 				DF09611E2A5C82FF00559857 /* AppDelegate.swift in Sources */,
+				DF82D6B32A6A3AD600E2DA66 /* UIView.swift in Sources */,
 				DF0961202A5C82FF00559857 /* SceneDelegate.swift in Sources */,
 				DF0961522A5D254A00559857 /* CustomTextChoiceWidgetView.swift in Sources */,
+				DF82D6AD2A6A355100E2DA66 /* CustomTextAskView.swift in Sources */,
 				DF0961512A5D254A00559857 /* PollWidgetViewModel.swift in Sources */,
+				DF82D6AB2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift in Sources */,
 				DF0961532A5D254A00559857 /* CustomTextPollWidgetViewController.swift in Sources */,
+				DF82D6AF2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift in Sources */,
+				DF82D6B12A6A3A7F00E2DA66 /* WidgetTitleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

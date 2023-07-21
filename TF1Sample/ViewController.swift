@@ -49,19 +49,23 @@ class ViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         sdk = EngagementSDK(config: EngagementSDKConfig(clientID: "mOBYul18quffrBDuq2IACKtVuLbUzXIPye5S3bq5"))
-        loadWidgetModelToShowCustomWidget()
-        loadWidgetModelToShowStockWidget()
+        
+        loadWidgetModelToShowCustomWidget(id: "9465eebc-7a3f-4a89-a2e2-76b4dc6f5ff8",kind: WidgetKind.textPoll)
+        loadWidgetModelToShowStockWidget(id: "a93edd55-44d0-4c17-a309-2281f4e0ac74",kind: WidgetKind.textPoll)
+        
+        loadWidgetModelToShowCustomWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
+        loadWidgetModelToShowStockWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
     }
 
-    func loadWidgetModelToShowCustomWidget(){
-        self.sdk?.getWidgetModel(id: "9465eebc-7a3f-4a89-a2e2-76b4dc6f5ff8", kind: WidgetKind.textPoll){ [self] result in
+    func loadWidgetModelToShowCustomWidget(id:String, kind:WidgetKind){
+        self.sdk?.getWidgetModel(id: id, kind: kind){ [self] result in
             handleResult(result: result)
         }
         
     }
     
-    func loadWidgetModelToShowStockWidget(){
-        self.sdk?.getWidget(id: "a93edd55-44d0-4c17-a309-2281f4e0ac74", kind: WidgetKind.textPoll){ [self] result in
+    func loadWidgetModelToShowStockWidget(id:String, kind:WidgetKind){
+        self.sdk?.getWidget(id: id, kind: kind){ [self] result in
             switch result {
                 case let .success(widget):
                 self.presentWidget(widgetViewController: widget)
@@ -130,7 +134,16 @@ class ViewController: UIViewController {
                 break
             case .videoAlert(_):
                 break
-            case .textAsk(_):
+            case let .textAsk(model):
+                model.loadInteractionHistory { result in
+                    switch result {
+                    case .failure(let error):
+                        print("\(error)")
+                    case .success(let interations):
+                        self.presentWidget(widgetViewController: CustomTextAskWidgetViewController(model: model))
+                    }
+                }
+                
                 break
             case .numberPrediction(_):
                 break
