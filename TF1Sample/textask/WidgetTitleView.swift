@@ -12,7 +12,7 @@ class WidgetTitleView: UIView {
     // MARK: Private Properties
 
     private let animationViewSize: CGFloat = 18.0
-    private var lottieView: AnimationView?
+    private var lottieView: LottieAnimationView?
 
     // MARK: UI Properties
 
@@ -141,7 +141,7 @@ class WidgetTitleView: UIView {
             completion?()
         })
 
-        let lottieView = AnimationView(filePath: animationFilepath)
+        let lottieView = LottieAnimationView(filePath: animationFilepath)
         lottieView.translatesAutoresizingMaskIntoConstraints = false
         lottieView.contentMode = .scaleAspectFit
 

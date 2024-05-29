@@ -48,13 +48,17 @@ class ViewController: UIViewController {
         ])
         
         // Do any additional setup after loading the view.
-        sdk = EngagementSDK(config: EngagementSDKConfig(clientID: "mOBYul18quffrBDuq2IACKtVuLbUzXIPye5S3bq5"))
+        sdk = EngagementSDK(config: EngagementSDKConfig(clientID: "3FE16VwZNlLDhLYI0i5DjTYtc638v35nBXmyBjxM"))
         
-        loadWidgetModelToShowCustomWidget(id: "9465eebc-7a3f-4a89-a2e2-76b4dc6f5ff8",kind: WidgetKind.textPoll)
-        loadWidgetModelToShowStockWidget(id: "a93edd55-44d0-4c17-a309-2281f4e0ac74",kind: WidgetKind.textPoll)
+        loadWidgetModelToShowCustomWidget(id: "2d7f63cb-0ff0-4f0a-b3cf-81760d48be33",kind: WidgetKind.textPoll)
+        loadWidgetModelToShowStockWidget(id: "2d7f63cb-0ff0-4f0a-b3cf-81760d48be33",kind: WidgetKind.textPoll)
         
-        loadWidgetModelToShowCustomWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
-        loadWidgetModelToShowStockWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
+        loadWidgetModelToShowStockWidget(id: "b046a70b-460c-4a2a-a26b-9985461916c7",kind: WidgetKind.imageSlider)
+        
+        loadWidgetModelToShowStockWidget(id: "39217a2d-2f1b-41c3-914b-95fa8a64594c",kind: WidgetKind.cheerMeter)
+        
+//        loadWidgetModelToShowCustomWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
+//        loadWidgetModelToShowStockWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
     }
 
     func loadWidgetModelToShowCustomWidget(id:String, kind:WidgetKind){
@@ -150,6 +154,8 @@ class ViewController: UIViewController {
             case .numberPredictionFollowUp(_):
                 break
                 
+            case .richPost(_):
+                break
             }
         }
     }
