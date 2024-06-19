@@ -58,7 +58,7 @@ class ReactionViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             reactionsHolder.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
-            reactionsHolder.topAnchor.constraint(equalTo: view.safeTopAnchor, constant: 20),
+            reactionsHolder.topAnchor.constraint(equalTo: view.safeTopAnchor),
             reactionsHolder.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -139,6 +139,7 @@ class ReactionViewController: UIViewController {
                 reactionView.tag = index
                 reactionView.translatesAutoresizingMaskIntoConstraints = false
                 let tap = UITapGestureRecognizer(target: self, action: #selector(self.reactionButtonTapped(_:)))
+                tap.delegate = self
                 reactionView.addGestureRecognizer(tap)
                 NSLayoutConstraint.activate([
                     reactionView.widthAnchor.constraint(greaterThanOrEqualToConstant: 34.0)
@@ -247,5 +248,13 @@ extension UIView {
             return self.safeAreaLayoutGuide.leadingAnchor
         }
         return leadingAnchor
+    }
+}
+
+
+
+extension ReactionViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
