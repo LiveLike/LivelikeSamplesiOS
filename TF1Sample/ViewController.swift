@@ -48,15 +48,24 @@ class ViewController: UIViewController {
         ])
         
         // Do any additional setup after loading the view.
-        sdk = EngagementSDK(config: EngagementSDKConfig(clientID: "3FE16VwZNlLDhLYI0i5DjTYtc638v35nBXmyBjxM"))
+        sdk = EngagementSDK(config: EngagementSDKConfig(clientID: "8PqSNDgIVHnXuJuGte1HdvOjOqhCFE1ZCR3qhqaS"))
+    
+        let reactionBarViewController = ReactionViewController(sdk: sdk, targetGroupID: "135f341f-9daf-461c-8c02-239f76aaf85f", targetID: "yourTargetID")
         
-        loadWidgetModelToShowCustomWidget(id: "2d7f63cb-0ff0-4f0a-b3cf-81760d48be33",kind: WidgetKind.textPoll)
-        loadWidgetModelToShowStockWidget(id: "2d7f63cb-0ff0-4f0a-b3cf-81760d48be33",kind: WidgetKind.textPoll)
+        self.addChild(reactionBarViewController)
+        reactionBarViewController.didMove(toParent: self)
+        reactionBarViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        self.widgetView.addArrangedSubview(reactionBarViewController.view)
+
+//        loadWidgetModelToShowCustomWidget(id: "2d7f63cb-0ff0-4f0a-b3cf-81760d48be33",kind: WidgetKind.textPoll)
+//        loadWidgetModelToShowCustomWidget(id: "b046a70b-460c-4a2a-a26b-9985461916c7",kind: WidgetKind.imageSlider)
+//        loadWidgetModelToShowCustomWidget(id: "39217a2d-2f1b-41c3-914b-95fa8a64594c",kind: WidgetKind.cheerMeter)
         
-        loadWidgetModelToShowStockWidget(id: "b046a70b-460c-4a2a-a26b-9985461916c7",kind: WidgetKind.imageSlider)
         
-        loadWidgetModelToShowStockWidget(id: "39217a2d-2f1b-41c3-914b-95fa8a64594c",kind: WidgetKind.cheerMeter)
         
+        
+//        loadWidgetModelToShowStockWidget(id: "2d7f63cb-0ff0-4f0a-b3cf-81760d48be33",kind: WidgetKind.textPoll)
+//        loadWidgetModelToShowStockWidget(id: "b046a70b-460c-4a2a-a26b-9985461916c7",kind: WidgetKind.imageSlider)
 //        loadWidgetModelToShowCustomWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
 //        loadWidgetModelToShowStockWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
     }
@@ -113,6 +122,14 @@ class ViewController: UIViewController {
         case .success(let widgetModel):
             switch widgetModel {
             case let .cheerMeter(model):
+                model.loadInteractionHistory { result in
+                    switch result {
+                    case .failure(let error):
+                        print("\(error)")
+                    case .success(let interations):
+                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
+                    }
+                }
                 break;
             case .alert(_):
                 break
@@ -128,11 +145,19 @@ class ViewController: UIViewController {
                     case .failure(let error):
                         print("\(error)")
                     case .success(let interations):
-                        self.presentWidget(widgetViewController: CustomTextPollWidgetViewController(model: model))
+                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
                     }
                 }
                 break
-            case .imageSlider(_):
+            case let .imageSlider(model):
+                model.loadInteractionHistory { result in
+                    switch result {
+                    case .failure(let error):
+                        print("\(error)")
+                    case .success(let interations):
+                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
+                    }
+                }
                 break
             case .socialEmbed(_):
                 break
