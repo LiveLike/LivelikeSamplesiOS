@@ -29,7 +29,7 @@ class ReactionViewController: UIViewController {
         stackView.axis = .horizontal
         stackView.alignment = .fill
         stackView.distribution = .equalSpacing
-        stackView.spacing = 0.0
+        stackView.spacing = 2.0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
     }()
@@ -59,6 +59,7 @@ class ReactionViewController: UIViewController {
         NSLayoutConstraint.activate([
             reactionsHolder.leadingAnchor.constraint(equalTo: view.safeLeadingAnchor),
             reactionsHolder.topAnchor.constraint(equalTo: view.safeTopAnchor),
+            reactionsHolder.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             reactionsHolder.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
@@ -72,7 +73,6 @@ class ReactionViewController: UIViewController {
                 self.reactionSession?.sessionDelegate = self
                 self.reactionSpaceID = reactionSpace.id
                 self.fetchReactionPacks(reactionPackIDs: reactionSpace.reactionPackIDs)
-                self.fetchUserReactions()
             case .failure(let error):
                 self.fetchReactionSpaces()
                 print("Error fetching reaction spaces: \(error)")
@@ -86,6 +86,7 @@ class ReactionViewController: UIViewController {
                 switch result {
                 case .success(let reactionPack):
                     self.setupReactions(reactionPack: reactionPack)
+                    self.fetchUserReactions()
                 case .failure(let error):
                     print("Error fetching reaction pack info: \(error)")
                 }
@@ -167,8 +168,8 @@ class ReactionViewController: UIViewController {
     private func updateReactionCounts(reactionCounts: [UserReactionsCountResult]) {
         if reactionCounts.count > 0 {
             for reactionCount in reactionCounts[0].reactions {
-                if reactionCount.selfReactedUserReactionID != nil {
-                    self.selfUserReactions.append(SelfUserReaction(id: reactionCount.selfReactedUserReactionID, reactionID: reactionCount.reactionID))
+                if reactionCount.selfReactedUserReactionId != nil {
+                    self.selfUserReactions.append(SelfUserReaction(id: reactionCount.selfReactedUserReactionId!, reactionID: reactionCount.reactionID))
                 }
                 self.reactionCounts[reactionCount.reactionID] = reactionCount.count
             }

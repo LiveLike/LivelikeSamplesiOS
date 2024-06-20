@@ -24,7 +24,9 @@ open class ReactionView: UIView {
     private let reactionFocusView: UIView = {
         let reactionFocusView: UIView = UIView(frame: .zero)
         reactionFocusView.translatesAutoresizingMaskIntoConstraints = false
+        reactionFocusView.layer.cornerRadius = 8.0
 //        reactionFocusView.livelike_cornerRadius = 12.0
+        reactionFocusView.backgroundColor = .green
         reactionFocusView.alpha = 0.0
         return reactionFocusView
     }()
