@@ -74,7 +74,6 @@ class ReactionViewController: UIViewController {
                 self.reactionSpaceID = reactionSpace.id
                 self.fetchReactionPacks(reactionPackIDs: reactionSpace.reactionPackIDs)
             case .failure(let error):
-                self.fetchReactionSpaces()
                 print("Error fetching reaction spaces: \(error)")
             }
         }
