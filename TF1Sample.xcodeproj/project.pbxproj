@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		067ECC3E717EFFF2993F25FF /* Pods_TF1Sample_TF1SampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B34B7698148078E0D163293 /* Pods_TF1Sample_TF1SampleUITests.framework */; };
 		4F0EF978ECECA0517834F24B /* Pods_TF1Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01481477912993CE6392037F /* Pods_TF1Sample.framework */; };
+		76CBB62A2C403C7500760CF4 /* ReactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6292C403C7500760CF4 /* ReactionViewModel.swift */; };
+		76CBB62C2C40521200760CF4 /* ReactionViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB62B2C40521200760CF4 /* ReactionViewModelFactory.swift */; };
+		76CBB62E2C40757300760CF4 /* ReactionSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB62D2C40757300760CF4 /* ReactionSetViewModel.swift */; };
+		76CBB6312C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6302C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift */; };
+		76CBB6332C407EDB00760CF4 /* LLTextChoiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6322C407EDB00760CF4 /* LLTextChoiceWidgetView.swift */; };
+		76CBB6392C42082600760CF4 /* TextQuizWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6382C42082600760CF4 /* TextQuizWidgetView.swift */; };
+		76CBB63B2C421D7D00760CF4 /* QuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB63A2C421D7D00760CF4 /* QuizViewModel.swift */; };
+		76FEEC1A2C4601E700CA4E3B /* QuizWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEEC192C4601E700CA4E3B /* QuizWidgetViewModel.swift */; };
+		76FEEC372C4846B100CA4E3B /* TNTDigital-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76FEEC342C4846B100CA4E3B /* TNTDigital-Regular.ttf */; };
+		76FEEC382C4846B100CA4E3B /* TNTDigital-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76FEEC352C4846B100CA4E3B /* TNTDigital-Bold.ttf */; };
+		76FEEC392C4846B100CA4E3B /* TNTDigital-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76FEEC362C4846B100CA4E3B /* TNTDigital-Medium.ttf */; };
 		B4F613863F5E8165856FC689 /* Pods_TF1SampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC98B18F0C9E32D1633EA86 /* Pods_TF1SampleTests.framework */; };
 		DF09611E2A5C82FF00559857 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF09611D2A5C82FF00559857 /* AppDelegate.swift */; };
 		DF0961202A5C82FF00559857 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF09611F2A5C82FF00559857 /* SceneDelegate.swift */; };
@@ -55,6 +66,17 @@
 		1C731B936333B148E707DEF1 /* Pods-TF1SampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1SampleTests.debug.xcconfig"; path = "Target Support Files/Pods-TF1SampleTests/Pods-TF1SampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		472A2AC8006B7424E6230EFA /* Pods-TF1SampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1SampleTests.release.xcconfig"; path = "Target Support Files/Pods-TF1SampleTests/Pods-TF1SampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		604CC1C051052FB568524F9C /* Pods-TF1Sample-TF1SampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1Sample-TF1SampleUITests.release.xcconfig"; path = "Target Support Files/Pods-TF1Sample-TF1SampleUITests/Pods-TF1Sample-TF1SampleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		76CBB6292C403C7500760CF4 /* ReactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModel.swift; sourceTree = "<group>"; };
+		76CBB62B2C40521200760CF4 /* ReactionViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModelFactory.swift; sourceTree = "<group>"; };
+		76CBB62D2C40757300760CF4 /* ReactionSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSetViewModel.swift; sourceTree = "<group>"; };
+		76CBB6302C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLTextQuizWidgetViewController.swift; sourceTree = "<group>"; };
+		76CBB6322C407EDB00760CF4 /* LLTextChoiceWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLTextChoiceWidgetView.swift; sourceTree = "<group>"; };
+		76CBB6382C42082600760CF4 /* TextQuizWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextQuizWidgetView.swift; sourceTree = "<group>"; };
+		76CBB63A2C421D7D00760CF4 /* QuizViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewModel.swift; sourceTree = "<group>"; };
+		76FEEC192C4601E700CA4E3B /* QuizWidgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizWidgetViewModel.swift; sourceTree = "<group>"; };
+		76FEEC342C4846B100CA4E3B /* TNTDigital-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TNTDigital-Regular.ttf"; sourceTree = "<group>"; };
+		76FEEC352C4846B100CA4E3B /* TNTDigital-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TNTDigital-Bold.ttf"; sourceTree = "<group>"; };
+		76FEEC362C4846B100CA4E3B /* TNTDigital-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TNTDigital-Medium.ttf"; sourceTree = "<group>"; };
 		A4F56639F37C5C256ADCBE8A /* Pods-TF1Sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1Sample.debug.xcconfig"; path = "Target Support Files/Pods-TF1Sample/Pods-TF1Sample.debug.xcconfig"; sourceTree = "<group>"; };
 		DCC98B18F0C9E32D1633EA86 /* Pods_TF1SampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TF1SampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE12BB5ADD24066C8743A005 /* Pods-TF1Sample-TF1SampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1Sample-TF1SampleUITests.debug.xcconfig"; path = "Target Support Files/Pods-TF1Sample-TF1SampleUITests/Pods-TF1Sample-TF1SampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +156,28 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		76CBB62F2C407A7500760CF4 /* ImageQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				76CBB6302C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift */,
+				76CBB6322C407EDB00760CF4 /* LLTextChoiceWidgetView.swift */,
+				76CBB6382C42082600760CF4 /* TextQuizWidgetView.swift */,
+				76CBB63A2C421D7D00760CF4 /* QuizViewModel.swift */,
+				76FEEC192C4601E700CA4E3B /* QuizWidgetViewModel.swift */,
+			);
+			path = ImageQuiz;
+			sourceTree = "<group>";
+		};
+		76FEEC1B2C48465C00CA4E3B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				76FEEC352C4846B100CA4E3B /* TNTDigital-Bold.ttf */,
+				76FEEC362C4846B100CA4E3B /* TNTDigital-Medium.ttf */,
+				76FEEC342C4846B100CA4E3B /* TNTDigital-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		DF0961112A5C82FF00559857 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +203,8 @@
 		DF09611C2A5C82FF00559857 /* TF1Sample */ = {
 			isa = PBXGroup;
 			children = (
+				76FEEC1B2C48465C00CA4E3B /* Fonts */,
+				76CBB62F2C407A7500760CF4 /* ImageQuiz */,
 				DF82D6A92A6A33B800E2DA66 /* textask */,
 				DF09614D2A5D254A00559857 /* textPoll */,
 				DF09611D2A5C82FF00559857 /* AppDelegate.swift */,
@@ -171,6 +217,9 @@
 				DF82D6B22A6A3AD600E2DA66 /* UIView.swift */,
 				DF4EC0D32C22A82600FBD06D /* ReactionBarViewController.swift */,
 				DF4EC0D52C22A84300FBD06D /* ReactionView.swift */,
+				76CBB62D2C40757300760CF4 /* ReactionSetViewModel.swift */,
+				76CBB6292C403C7500760CF4 /* ReactionViewModel.swift */,
+				76CBB62B2C40521200760CF4 /* ReactionViewModelFactory.swift */,
 			);
 			path = TF1Sample;
 			sourceTree = "<group>";
@@ -323,8 +372,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF09612A2A5C830200559857 /* LaunchScreen.storyboard in Resources */,
+				76FEEC392C4846B100CA4E3B /* TNTDigital-Medium.ttf in Resources */,
+				76FEEC372C4846B100CA4E3B /* TNTDigital-Regular.ttf in Resources */,
 				DF0961272A5C830200559857 /* Assets.xcassets in Resources */,
 				DF0961252A5C82FF00559857 /* Main.storyboard in Resources */,
+				76FEEC382C4846B100CA4E3B /* TNTDigital-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,17 +506,25 @@
 			files = (
 				DF0961222A5C82FF00559857 /* ViewController.swift in Sources */,
 				DF09611E2A5C82FF00559857 /* AppDelegate.swift in Sources */,
+				76CBB62E2C40757300760CF4 /* ReactionSetViewModel.swift in Sources */,
 				DF82D6B32A6A3AD600E2DA66 /* UIView.swift in Sources */,
+				76CBB62A2C403C7500760CF4 /* ReactionViewModel.swift in Sources */,
+				76CBB6312C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift in Sources */,
 				DF4EC0D42C22A82600FBD06D /* ReactionBarViewController.swift in Sources */,
+				76CBB6332C407EDB00760CF4 /* LLTextChoiceWidgetView.swift in Sources */,
 				DF0961202A5C82FF00559857 /* SceneDelegate.swift in Sources */,
+				76CBB63B2C421D7D00760CF4 /* QuizViewModel.swift in Sources */,
 				DF4EC0D62C22A84300FBD06D /* ReactionView.swift in Sources */,
 				DF0961522A5D254A00559857 /* CustomTextChoiceWidgetView.swift in Sources */,
 				DF82D6AD2A6A355100E2DA66 /* CustomTextAskView.swift in Sources */,
 				DF0961512A5D254A00559857 /* PollWidgetViewModel.swift in Sources */,
 				DF82D6AB2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift in Sources */,
 				DF0961532A5D254A00559857 /* CustomTextPollWidgetViewController.swift in Sources */,
+				76CBB6392C42082600760CF4 /* TextQuizWidgetView.swift in Sources */,
 				DF82D6AF2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift in Sources */,
 				DF82D6B12A6A3A7F00E2DA66 /* WidgetTitleView.swift in Sources */,
+				76CBB62C2C40521200760CF4 /* ReactionViewModelFactory.swift in Sources */,
+				76FEEC1A2C4601E700CA4E3B /* QuizWidgetViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

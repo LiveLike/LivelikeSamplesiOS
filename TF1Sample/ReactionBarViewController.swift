@@ -20,6 +20,8 @@ class ReactionViewController: UIViewController {
     var selfUserReactions: [SelfUserReaction] = []
     var reactionViews: [ReactionView] = []
     
+    var reactionSetViewModel: ReactionSetViewModel!
+    
     // UI Elements
     private let stackView = UIStackView()
     private let mediaRepository: MediaRepository = MediaRepository.shared
@@ -49,7 +51,19 @@ class ReactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        fetchReactionSpaces()
+
+        Task {
+            do {
+                self.reactionSetViewModel = try await ReactionViewModelFactory.make(
+                    sdk: self.sdk,
+                    targetGroupID: self.targetGroupID,
+                    targetID: self.targetID
+                )
+                setupReactions()
+            } catch {
+                
+            }
+        }
     }
     
     private func setupView() {
@@ -63,76 +77,25 @@ class ReactionViewController: UIViewController {
             reactionsHolder.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
-    private func fetchReactionSpaces() {
-        self.sdk.reaction.getReactionSpaces(reactionSpaceID: nil, targetGroupID: self.targetGroupID, page: .first) { result in
-            switch result {
-            case .success(let reactionSpaces):
-                guard let reactionSpace = reactionSpaces.first else { return }
-                self.reactionSession = self.sdk.reaction.createReactionSession(reactionSpace: reactionSpace)
-                self.reactionSession?.sessionDelegate = self
-                self.reactionSpaceID = reactionSpace.id
-                self.fetchReactionPacks(reactionPackIDs: reactionSpace.reactionPackIDs)
-            case .failure(let error):
-                print("Error fetching reaction spaces: \(error)")
-            }
-        }
-    }
-    
-    private func fetchReactionPacks(reactionPackIDs: [String]) {
-        for packID in reactionPackIDs {
-            self.sdk.reaction.getReactionPackInfo(reactionPackID: packID) { result in
-                switch result {
-                case .success(let reactionPack):
-                    self.setupReactions(reactionPack: reactionPack)
-                    self.fetchUserReactions()
-                case .failure(let error):
-                    print("Error fetching reaction pack info: \(error)")
-                }
-            }
-        }
-    }
-    
+
     @objc private func reactionButtonTapped(_ sender: UITapGestureRecognizer!) {
         if let reactionView = sender.view as? ReactionView {
             UIAccessibility.post(notification: .layoutChanged, argument: reactionView)
             
-            if let selfUserReactionIndex = self.selfUserReactions.firstIndex(where: { $0.reactionID == reactionView.reactionID }) {
-                let selfUserReaction = self.selfUserReactions[selfUserReactionIndex]
-                reactionSession?.removeUserReaction(userReactionID: selfUserReaction.id) { result in
-                    switch result {
-                    case .success(let userReaction):
-                        self.selfUserReactions.remove(at: selfUserReactionIndex)
-                        reactionView.isMine = false
-                        print("Removed user reaction: \(userReaction)")
-                    case .failure(let error):
-                        print("Error removing user reaction: \(error)")
-                    }
-                }
+            if reactionView.reactionViewModel.isSelected {
+                reactionView.reactionViewModel.removeReaction()
             } else {
-                reactionSession?.addUserReaction(targetID: self.targetID, reactionID: reactionView.reactionID, customData: nil) { result in
-                    switch result {
-                    case .success(let userReaction):
-                        self.selfUserReactions.append(SelfUserReaction(id: userReaction.id, reactionID: userReaction.reactionID))
-                        reactionView.isMine = true
-                        print("Added user reaction: \(userReaction)")
-                    case .failure(let error):
-                        print("Error adding user reaction: \(error)")
-                    }
-                }
+                reactionView.reactionViewModel.addReaction()
             }
         }
     }
     
-    private func setupReactions(reactionPack: ReactionPack) {
+    private func setupReactions() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            reactionPack.emojis.enumerated().forEach { index, reaction in
+            self.reactionSetViewModel.reactions.enumerated().forEach { index, reaction in
                 let reactionView = ReactionView(
-                    reactionID: reaction.id,
-                    imageURL: reaction.file,
-                    reactionCount: 0,
-                    name: reaction.name
+                    reactionViewModel: reaction
                 )
                 
                 reactionView.isUserInteractionEnabled = true
@@ -148,61 +111,6 @@ class ReactionViewController: UIViewController {
                 self.reactionsHolder.addArrangedSubview(reactionView)
                 self.reactionViews.append(reactionView)
             }
-        }
-    }
-    
-    private func fetchUserReactions() {
-        guard let spaceID = reactionSpaceID else { return }
-        reactionSession?.getUserReactionsCount(reactionSpaceID: spaceID, targetID: [self.targetID], page: .first) { result in
-            switch result {
-            case .success(let reactionCounts):
-                self.updateReactionCounts(reactionCounts: reactionCounts)
-            case .failure(let error):
-                self.fetchReactionSpaces()
-                print("Error fetching user reactions count: \(error)")
-            }
-        }
-    }
-    
-    private func updateReactionCounts(reactionCounts: [UserReactionsCountResult]) {
-        if reactionCounts.count > 0 {
-            for reactionCount in reactionCounts[0].reactions {
-                if reactionCount.selfReactedUserReactionId != nil {
-                    self.selfUserReactions.append(SelfUserReaction(id: reactionCount.selfReactedUserReactionId!, reactionID: reactionCount.reactionID))
-                }
-                self.reactionCounts[reactionCount.reactionID] = reactionCount.count
-            }
-            updateUI()
-        }
-    }
-    
-    private func updateUI() {
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            for reactionView in self.reactionViews {
-                if let count = self.reactionCounts[reactionView.reactionID] {
-                    reactionView.setCount(count)
-                }
-                reactionView.isMine = self.selfUserReactions.contains(where: { $0.reactionID == reactionView.reactionID })
-            }
-        }
-    }
-}
-
-extension ReactionViewController: ReactionSessionDelegate {
-    func reactionSession(_ reactionSession: ReactionSession, didAddReaction reaction: UserReaction) {
-        if reaction.targetID == targetID {
-            self.reactionCounts[reaction.reactionID, default: 0] += 1
-            updateUI()
-        }
-    }
-    
-    func reactionSession(_ reactionSession: ReactionSession, didRemoveReaction reaction: UserReaction) {
-        if reaction.targetID == targetID {
-            if self.reactionCounts[reaction.reactionID, default: 0] > 0 {
-                self.reactionCounts[reaction.reactionID, default: 0] -= 1
-            }
-            updateUI()
         }
     }
 }

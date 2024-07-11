@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .black
         self.view.addSubview(widgetTimeline)
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -57,10 +57,32 @@ class ViewController: UIViewController {
         reactionBarViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.widgetView.addArrangedSubview(reactionBarViewController.view)
 
-//        loadWidgetModelToShowCustomWidget(id: "2d7f63cb-0ff0-4f0a-b3cf-81760d48be33",kind: WidgetKind.textPoll)
+        loadWidgetModelToShowStockWidget(id: "1e2a0fd9-ab97-4712-8fe2-8172bfeed3d8",kind: WidgetKind.imageQuiz)
 //        loadWidgetModelToShowCustomWidget(id: "b046a70b-460c-4a2a-a26b-9985461916c7",kind: WidgetKind.imageSlider)
 //        loadWidgetModelToShowCustomWidget(id: "39217a2d-2f1b-41c3-914b-95fa8a64594c",kind: WidgetKind.cheerMeter)
-        
+        let quizVC = LLTextQuizWidgetViewController(
+            model: FakeQuizViewModel(
+                tag: "QUIZ",
+                question: "Who will score more goals in Euro 2024",
+                choices: [
+                    LLQuizOptionViewModel(
+                        id: "test-1",
+                        isCorrect: true,
+                        text: "Kane"
+                    ),
+                    LLQuizOptionViewModel(
+                        id: "test-2",
+                        isCorrect: false,
+                        text: "Foden"
+                    )
+                ],
+                canSubmitAnswer: true,
+                isQuizExpired: false,
+                userDidAnswer: false
+            )
+        )
+        self.presentWidget(widgetViewController: quizVC)
+    
         
         
         
@@ -70,37 +92,47 @@ class ViewController: UIViewController {
 //        loadWidgetModelToShowStockWidget(id: "151359d2-de10-4e14-aae1-85edc32f50bc",kind: WidgetKind.textAsk)
     }
 
-    func loadWidgetModelToShowCustomWidget(id:String, kind:WidgetKind){
-        self.sdk?.getWidgetModel(id: id, kind: kind){ [self] result in
-            handleResult(result: result)
-        }
-        
-    }
+//    func loadWidgetModelToShowCustomWidget(id:String, kind:WidgetKind){
+//        self.sdk?.getWidgetModel(id: id, kind: kind){ [self] result in
+//            handleResult(result: result)
+//        }
+//        
+//    }
     
     func loadWidgetModelToShowStockWidget(id:String, kind:WidgetKind){
-        self.sdk?.getWidget(id: id, kind: kind){ [self] result in
+        self.sdk?.getWidgetModel(id: id, kind: kind){ [self] result in
             switch result {
-                case let .success(widget):
-                self.presentWidget(widgetViewController: widget)
-                case let .failure(error):
-                    print("\(error.localizedDescription)")
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        let alert = UIAlertController(
-                            title: "Error",
-                            message: "\(error.localizedDescription)",
-                            preferredStyle: .alert
-                        )
-
-                        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+            case .success(let model):
+                switch model {
+                case .quiz(let quiz):
+                    quiz.loadInteractionHistory { _ in
+                        
+                        let quizVC = LLTextQuizWidgetViewController(model: QuizWidgetViewModel(model: quiz))
+                        self.presentWidget(widgetViewController: quizVC)
                     }
+                default:
+                    break
                 }
+                
+            case let .failure(error):
+                print("\(error.localizedDescription)")
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    let alert = UIAlertController(
+                        title: "Error",
+                        message: "\(error.localizedDescription)",
+                        preferredStyle: .alert
+                    )
+                    
+                    alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
         }
-        
     }
     
-    func presentWidget(widgetViewController: Widget){
+    func presentWidget(widgetViewController: LLTextQuizWidgetViewController){
         DispatchQueue.main.async { [weak self] in
             if let self = self {
                 let viewController = widgetViewController
@@ -108,82 +140,88 @@ class ViewController: UIViewController {
                 viewController.didMove(toParent: self)
                 viewController.view.translatesAutoresizingMaskIntoConstraints = false
                 self.widgetView.addArrangedSubview(viewController.view)
-                viewController.delegate = self.interactiveTimelineWidgetViewDelegate
-                viewController.moveToNextState()
             }
             
         }
     }
     
-    func handleResult(result: Result<WidgetModel, Error>){
-        switch result {
-        case .failure(let error):
-            print(error)
-        case .success(let widgetModel):
-            switch widgetModel {
-            case let .cheerMeter(model):
-                model.loadInteractionHistory { result in
-                    switch result {
-                    case .failure(let error):
-                        print("\(error)")
-                    case .success(let interations):
-                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
-                    }
-                }
-                break;
-            case .alert(_):
-                break
-            case .quiz(_):
-                break
-            case .prediction(_):
-                break
-            case .predictionFollowUp(_):
-                break
-            case let .poll(model):
-                model.loadInteractionHistory { result in
-                    switch result {
-                    case .failure(let error):
-                        print("\(error)")
-                    case .success(let interations):
-                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
-                    }
-                }
-                break
-            case let .imageSlider(model):
-                model.loadInteractionHistory { result in
-                    switch result {
-                    case .failure(let error):
-                        print("\(error)")
-                    case .success(let interations):
-                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
-                    }
-                }
-                break
-            case .socialEmbed(_):
-                break
-            case .videoAlert(_):
-                break
-            case let .textAsk(model):
-                model.loadInteractionHistory { result in
-                    switch result {
-                    case .failure(let error):
-                        print("\(error)")
-                    case .success(let interations):
-                        self.presentWidget(widgetViewController: CustomTextAskWidgetViewController(model: model))
-                    }
-                }
-                
-                break
-            case .numberPrediction(_):
-                break
-            case .numberPredictionFollowUp(_):
-                break
-                
-            case .richPost(_):
-                break
-            }
-        }
-    }
+//    func handleResult(result: Result<WidgetModel, Error>){
+//        switch result {
+//        case .failure(let error):
+//            print(error)
+//        case .success(let widgetModel):
+//            switch widgetModel {
+//            case let .cheerMeter(model):
+//                model.loadInteractionHistory { result in
+//                    switch result {
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    case .success(let interations):
+//                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
+//                    }
+//                }
+//                break;
+//            case .alert(_):
+//                break
+//            case .quiz(let quiz):
+//                quiz.loadInteractionHistory { result in
+//                    switch result {
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    case .success(let interations):
+//                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
+//                    }
+//                }
+//                break
+//            case .prediction(_):
+//                break
+//            case .predictionFollowUp(_):
+//                break
+//            case let .poll(model):
+//                model.loadInteractionHistory { result in
+//                    switch result {
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    case .success(let interations):
+//                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
+//                    }
+//                }
+//                break
+//            case let .imageSlider(model):
+//                model.loadInteractionHistory { result in
+//                    switch result {
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    case .success(let interations):
+//                        self.presentWidget(widgetViewController: DefaultWidgetFactory.makeWidget(from: widgetModel)!)
+//                    }
+//                }
+//                break
+//            case .socialEmbed(_):
+//                break
+//            case .videoAlert(_):
+//                break
+//            case let .textAsk(model):
+//                model.loadInteractionHistory { result in
+//                    switch result {
+//                    case .failure(let error):
+//                        print("\(error)")
+//                    case .success(let interations):
+//                        self.presentWidget(widgetViewController: CustomTextAskWidgetViewController(model: model))
+//                    }
+//                }
+//                
+//                break
+//            case .numberPrediction(_):
+//                break
+//            case .numberPredictionFollowUp(_):
+//                break
+//                
+//            case .richPost(_):
+//                break
+//            }
+//        }
+//    }
     
 }
 

@@ -25,18 +25,14 @@ open class ReactionView: UIView {
         let reactionFocusView: UIView = UIView(frame: .zero)
         reactionFocusView.translatesAutoresizingMaskIntoConstraints = false
         reactionFocusView.layer.cornerRadius = 8.0
-//        reactionFocusView.livelike_cornerRadius = 12.0
         reactionFocusView.backgroundColor = .green
         reactionFocusView.alpha = 0.0
         return reactionFocusView
     }()
 
-    public let reactionID: String
-
-    private let name: String
     private let mediaRepository: MediaRepository = MediaRepository.shared
-
-    public var isMine: Bool = false {
+    
+    public var isMine: Bool {
         didSet {
             if isMine {
                 reactionFocusView.alpha = CGFloat(1.0)
@@ -45,23 +41,32 @@ open class ReactionView: UIView {
             }
         }
     }
+    
+    var reactionViewModel: ReactionViewModel
 
-    public init(reactionID: String, imageURL: URL, reactionCount: Int, name: String) {
-        self.reactionID = reactionID
-        self.name = name
+    public init(reactionViewModel: ReactionViewModel) {
+        self.reactionViewModel = reactionViewModel
+        self.isMine = reactionViewModel.isSelected
         super.init(frame: .zero)
-        reactionCountLabel.text = String(reactionCount)
+        reactionViewModel.listeners.addListener(self)
+        reactionCountLabel.text = String(reactionViewModel.count)
         self.isAccessibilityElement = true
         self.accessibilityTraits = .button
         setUpViews()
 
-        mediaRepository.getImage(url: imageURL) { [weak self] in
+        mediaRepository.getImage(url: reactionViewModel.imageUrl) { [weak self] in
             switch $0 {
             case .success(let result):
                 self?.reactionIcon.image = result.image
             case .failure(let error):
                 log.error(error)
             }
+        }
+        
+        if isMine {
+            reactionFocusView.alpha = CGFloat(1.0)
+        } else {
+            reactionFocusView.alpha = CGFloat(0.0)
         }
     }
 
@@ -70,14 +75,22 @@ open class ReactionView: UIView {
     }
 }
 
+extension ReactionView: ReactionViewModelListener {
+    func isSelectedDidChange(isSelected: Bool) {
+        DispatchQueue.main.async {
+            self.isMine = isSelected
+        }
+    }
+    
+    func countDidChange(count: Int) {
+        DispatchQueue.main.async {
+            self.setCount(count)
+        }
+    }
+}
+
 // MARK: - Public
 extension ReactionView {
-
-//    func setTheme(_ theme: Theme) {
-//        reactionCountLabel.textColor = theme.chatReactions.panelCountsColor
-//        reactionCountLabel.font = theme.messageReactionsCountFont
-//        reactionFocusView.backgroundColor = theme.reactionsPopupSelectedBackground
-//    }
 
     public func setCount(_ count: Int) {
         guard count > 0 else {
