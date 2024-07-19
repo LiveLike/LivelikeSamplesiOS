@@ -1,13 +1,6 @@
-//
-//  File.swift
-//  TF1Sample
-//
-//  Created by Work on 7/12/24.
-//
-
 import UIKit
 
-class TextQuizWidgetView: UIView {
+class LLTextQuizWidgetView: UIView {
 
     var choiceView: LLTextChoiceWidgetView = LLTextChoiceWidgetView()
     var button: UIButton = UIButton()

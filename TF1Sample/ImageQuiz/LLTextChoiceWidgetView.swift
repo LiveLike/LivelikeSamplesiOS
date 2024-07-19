@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  TF1Sample
-//
-//  Created by Work on 7/11/24.
-//
-
 import UIKit
 
 class LLTextChoiceWidgetView: UIView {

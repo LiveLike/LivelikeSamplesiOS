@@ -1,6 +1,6 @@
 import LiveLikeSwift
 
-class QuizWidgetViewModel: QuizViewModel {
+class LLQuizWidgetViewModelImpl: LLQuizViewModel {
     
     private let model: QuizWidgetModel
     
@@ -26,7 +26,7 @@ class QuizWidgetViewModel: QuizViewModel {
     var tag: String
     var question: String
     var isQuizExpired: Bool
-    var choices: [any QuizOptionViewModel]
+    var choices: [LLQuizOptionViewModel]
     var selectedChoiceID: String? {
         didSet {
             self.delegate?.selectedChoiceDidChange(choiceID: selectedChoiceID)
@@ -34,7 +34,7 @@ class QuizWidgetViewModel: QuizViewModel {
     }
     var isAnswerSubmitted: Bool
     
-    var delegate: QuizViewModelListener?
+    var delegate: LLQuizViewModelListener?
     
     func submitAnswer() {
         guard let selectedChoiceID = selectedChoiceID else { return }
@@ -68,7 +68,7 @@ class QuizWidgetViewModel: QuizViewModel {
     }
 }
 
-extension QuizWidgetViewModel: QuizWidgetModelDelegate {
+extension LLQuizWidgetViewModelImpl: QuizWidgetModelDelegate {
     func quizWidgetModel(
         _ model: QuizWidgetModel,
         answerCountDidChange answerCount: Int,

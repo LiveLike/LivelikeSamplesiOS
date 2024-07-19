@@ -107,7 +107,7 @@ class ViewController: UIViewController {
                 case .quiz(let quiz):
                     quiz.loadInteractionHistory { _ in
                         
-                        let quizVC = LLTextQuizWidgetViewController(model: QuizWidgetViewModel(model: quiz))
+                        let quizVC = LLTextQuizWidgetViewController(model: LLQuizWidgetViewModelImpl(model: quiz))
                         self.presentWidget(widgetViewController: quizVC)
                     }
                 default:

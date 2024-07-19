@@ -5,11 +5,11 @@ import LiveLikeCore
 class LLTextQuizWidgetViewController: UIViewController {
     private var choiceViews: [LLTextChoiceWidgetOptionView] = []
     
-    var quizView: TextQuizWidgetView!
+    var quizView: LLTextQuizWidgetView!
 
-    var model: QuizViewModel
+    var model: LLQuizViewModel
 
-    init(model: QuizViewModel) {
+    init(model: LLQuizViewModel) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
     }
@@ -21,7 +21,7 @@ class LLTextQuizWidgetViewController: UIViewController {
     override func loadView() {
         super.loadView()
         
-        self.quizView = TextQuizWidgetView()
+        self.quizView = LLTextQuizWidgetView()
         
         quizView.backgroundColor = .white
         
@@ -94,7 +94,7 @@ class LLTextQuizWidgetViewController: UIViewController {
 
 }
 
-extension LLTextQuizWidgetViewController: QuizViewModelListener {
+extension LLTextQuizWidgetViewController: LLQuizViewModelListener {
     func selectedChoiceDidChange(choiceID: String?) {
         if let choiceID = choiceID {
             self.choiceViews.forEach { choiceView in
