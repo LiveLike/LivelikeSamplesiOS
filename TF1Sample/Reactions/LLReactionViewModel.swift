@@ -1,21 +1,14 @@
-//
-//  ReactionViewModel.swift
-//  TF1Sample
-//
-//  Created by Work on 7/11/24.
-//
-
 import Foundation
 import LiveLikeCore
 import LiveLikeSwift
 
-protocol ReactionViewModelListener: AnyObject {
+protocol LLReactionViewModelListener: AnyObject {
     func isSelectedDidChange(isSelected: Bool)
     func countDidChange(count: Int)
 }
 
 // Data representing a single reaction
-public class ReactionViewModel {
+public class LLReactionViewModel {
     
     let reactionID: String
     let targetID: String
@@ -32,7 +25,7 @@ public class ReactionViewModel {
         }
     }
     
-    var listeners: Listener<ReactionViewModelListener> = Listener()
+    var listeners: Listener<LLReactionViewModelListener> = Listener()
     
     let reactionSession: ReactionSession
     var userReactionID: String?

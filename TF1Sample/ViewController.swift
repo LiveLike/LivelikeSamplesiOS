@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = .gray
         self.view.addSubview(widgetTimeline)
         let safeArea = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
@@ -50,14 +50,44 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         sdk = EngagementSDK(config: EngagementSDKConfig(clientID: "8PqSNDgIVHnXuJuGte1HdvOjOqhCFE1ZCR3qhqaS"))
         
-        let reactionBarViewController = ReactionViewController(sdk: sdk, targetGroupID: "135f341f-9daf-461c-8c02-239f76aaf85f", targetID: "yourTargetID")
+        let reactionBarViewController = LLReactionBarViewController()
         
         self.addChild(reactionBarViewController)
         reactionBarViewController.didMove(toParent: self)
         reactionBarViewController.view.translatesAutoresizingMaskIntoConstraints = false
         self.widgetView.addArrangedSubview(reactionBarViewController.view)
         
+        let reactionDisplayVC = LLReactionDisplayViewController()
+        
+        self.addChild(reactionDisplayVC)
+        reactionDisplayVC.didMove(toParent: self)
+        reactionDisplayVC.view.translatesAutoresizingMaskIntoConstraints = false
+        self.widgetView.addArrangedSubview(reactionDisplayVC.view)
+        
+        let cardCommentaryVC = LLCommentaryCardReactionViewController()
+        
+        self.addChild(cardCommentaryVC)
+        cardCommentaryVC.didMove(toParent: self)
+        cardCommentaryVC.view.translatesAutoresizingMaskIntoConstraints = false
+        self.widgetView.addArrangedSubview(cardCommentaryVC.view)
+
         loadWidgetModelToShowStockWidget(id: "1e2a0fd9-ab97-4712-8fe2-8172bfeed3d8",kind: WidgetKind.imageQuiz)
+        
+        Task {
+            do {
+                let model = try await LLReactionViewModelFactory.make(
+                    sdk: self.sdk,
+                    targetGroupID: "135f341f-9daf-461c-8c02-239f76aaf85f",
+                    targetID: "yourTargetID"
+                )
+                reactionDisplayVC.reactionSetViewModel = model
+                reactionBarViewController.reactionSetViewModel = model
+                cardCommentaryVC.reactionSetViewModel = model
+                
+            } catch {
+                
+            }
+        }
         
     }
     
@@ -68,11 +98,8 @@ class ViewController: UIViewController {
                 switch model {
                 case .quiz(let quiz):
                     quiz.loadInteractionHistory { _ in
-                        let quizVC = LLTextQuizWidgetViewController(
-                            model: LLQuizWidgetViewModelImpl(
-                                model: quiz
-                            )
-                        )
+                        
+                        let quizVC = LLTextQuizWidgetViewController(model: LLQuizWidgetViewModelImpl(model: quiz))
                         self.presentWidget(widgetViewController: quizVC)
                     }
                 default:

@@ -1,21 +1,18 @@
-//
-//  ReactionViewModelFactory.swift
-//  TF1Sample
-//
-//  Created by Work on 7/11/24.
-//
-
 import Foundation
-import EngagementSDK
 import LiveLikeSwift
 
-class ReactionViewModelFactory {
+class LLReactionViewModelFactory {
+    
+    enum Errors: Error {
+        case noReactionSpaces
+        case noReactionPacks
+    }
     
     static func make(
-        sdk: EngagementSDK,
+        sdk: LiveLike,
         targetGroupID: String,
         targetID: String
-    ) async throws -> ReactionSetViewModel{
+    ) async throws -> LLReactionSetViewModel{
         let reactionSpace = try await withCheckedThrowingContinuation { c in
             sdk.reaction.getReactionSpaces(
                 reactionSpaceID: nil,
@@ -24,7 +21,14 @@ class ReactionViewModelFactory {
             ) {
                 c.resume(with: $0)
             }
-        }.first!
+        }.first
+        
+        guard let reactionSpace = reactionSpace else {
+            throw Errors.noReactionSpaces
+        }
+        guard let reactionPackID = reactionSpace.reactionPackIDs.first else {
+            throw Errors.noReactionPacks
+        }
         
         let reactionSession = sdk.reaction.createReactionSession(
             reactionSpace: reactionSpace
@@ -32,7 +36,7 @@ class ReactionViewModelFactory {
         
         let reactionPack = try await withCheckedThrowingContinuation { c in
             sdk.reaction.getReactionPackInfo(
-                reactionPackID: reactionSpace.reactionPackIDs.first!
+                reactionPackID: reactionPackID
             ) {
                 c.resume(with: $0)
             }
@@ -46,13 +50,15 @@ class ReactionViewModelFactory {
             ) { 
                 c.resume(with: $0)
             }
-        }.first!
+        }.first
         
-        return ReactionSetViewModel(
-            totalReactionCount: reactionCounts.reactions.map { $0.count }.reduce(0, +),
+        let totalReactionCount = reactionCounts?.reactions.map { $0.count }.reduce(0, +) ?? 0
+        
+        return LLReactionSetViewModel(
+            totalReactionCount: totalReactionCount,
             reactions: reactionPack.emojis.map { emoji in
-                let reactions = reactionCounts.reactions.first(where: { $0.reactionID == emoji.id })
-                return ReactionViewModel(
+                let reactions = reactionCounts?.reactions.first(where: { $0.reactionID == emoji.id })
+                return LLReactionViewModel(
                     reactionID: emoji.id,
                     targetID: targetID,
                     isSelected: reactions?.selfReactedUserReactionId != nil,

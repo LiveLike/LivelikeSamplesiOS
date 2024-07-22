@@ -9,14 +9,17 @@
 /* Begin PBXBuildFile section */
 		067ECC3E717EFFF2993F25FF /* Pods_TF1Sample_TF1SampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B34B7698148078E0D163293 /* Pods_TF1Sample_TF1SampleUITests.framework */; };
 		4F0EF978ECECA0517834F24B /* Pods_TF1Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01481477912993CE6392037F /* Pods_TF1Sample.framework */; };
-		76CBB62A2C403C7500760CF4 /* ReactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6292C403C7500760CF4 /* ReactionViewModel.swift */; };
-		76CBB62C2C40521200760CF4 /* ReactionViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB62B2C40521200760CF4 /* ReactionViewModelFactory.swift */; };
-		76CBB62E2C40757300760CF4 /* ReactionSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB62D2C40757300760CF4 /* ReactionSetViewModel.swift */; };
+		768469682C4ED3B00072ED71 /* LLReactionDisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768469672C4ED3B00072ED71 /* LLReactionDisplayViewController.swift */; };
+		7684696A2C503AB10072ED71 /* LLCommentaryCardReactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768469692C503AB10072ED71 /* LLCommentaryCardReactionViewController.swift */; };
+		76CBB62A2C403C7500760CF4 /* LLReactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6292C403C7500760CF4 /* LLReactionViewModel.swift */; };
+		76CBB62C2C40521200760CF4 /* LLReactionViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB62B2C40521200760CF4 /* LLReactionViewModelFactory.swift */; };
+		76CBB62E2C40757300760CF4 /* LLReactionSetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB62D2C40757300760CF4 /* LLReactionSetViewModel.swift */; };
 		76CBB6312C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6302C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift */; };
 		76CBB6332C407EDB00760CF4 /* LLTextChoiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76CBB6322C407EDB00760CF4 /* LLTextChoiceWidgetView.swift */; };
 		76FEEC372C4846B100CA4E3B /* TNTDigital-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76FEEC342C4846B100CA4E3B /* TNTDigital-Regular.ttf */; };
 		76FEEC382C4846B100CA4E3B /* TNTDigital-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76FEEC352C4846B100CA4E3B /* TNTDigital-Bold.ttf */; };
 		76FEEC392C4846B100CA4E3B /* TNTDigital-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76FEEC362C4846B100CA4E3B /* TNTDigital-Medium.ttf */; };
+		76FEEC3C2C485E1900CA4E3B /* LLReactionCountDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEEC3B2C485E1900CA4E3B /* LLReactionCountDisplayView.swift */; };
 		76FEEC422C4AD00200CA4E3B /* LLQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEEC412C4AD00200CA4E3B /* LLQuizViewModel.swift */; };
 		76FEEC442C4AD00A00CA4E3B /* LLTextQuizWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEEC432C4AD00A00CA4E3B /* LLTextQuizWidgetView.swift */; };
 		76FEEC462C4AD01500CA4E3B /* FakeQuizViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FEEC452C4AD01500CA4E3B /* FakeQuizViewModel.swift */; };
@@ -34,8 +37,8 @@
 		DF0961512A5D254A00559857 /* PollWidgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF09614E2A5D254A00559857 /* PollWidgetViewModel.swift */; };
 		DF0961522A5D254A00559857 /* CustomTextChoiceWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF09614F2A5D254A00559857 /* CustomTextChoiceWidgetView.swift */; };
 		DF0961532A5D254A00559857 /* CustomTextPollWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF0961502A5D254A00559857 /* CustomTextPollWidgetViewController.swift */; };
-		DF4EC0D42C22A82600FBD06D /* ReactionBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC0D32C22A82600FBD06D /* ReactionBarViewController.swift */; };
-		DF4EC0D62C22A84300FBD06D /* ReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC0D52C22A84300FBD06D /* ReactionView.swift */; };
+		DF4EC0D42C22A82600FBD06D /* LLReactionBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC0D32C22A82600FBD06D /* LLReactionBarViewController.swift */; };
+		DF4EC0D62C22A84300FBD06D /* LLReactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF4EC0D52C22A84300FBD06D /* LLReactionView.swift */; };
 		DF82D6AB2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6AA2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift */; };
 		DF82D6AD2A6A355100E2DA66 /* CustomTextAskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6AC2A6A355100E2DA66 /* CustomTextAskView.swift */; };
 		DF82D6AF2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF82D6AE2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift */; };
@@ -67,14 +70,17 @@
 		1C731B936333B148E707DEF1 /* Pods-TF1SampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1SampleTests.debug.xcconfig"; path = "Target Support Files/Pods-TF1SampleTests/Pods-TF1SampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		472A2AC8006B7424E6230EFA /* Pods-TF1SampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1SampleTests.release.xcconfig"; path = "Target Support Files/Pods-TF1SampleTests/Pods-TF1SampleTests.release.xcconfig"; sourceTree = "<group>"; };
 		604CC1C051052FB568524F9C /* Pods-TF1Sample-TF1SampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TF1Sample-TF1SampleUITests.release.xcconfig"; path = "Target Support Files/Pods-TF1Sample-TF1SampleUITests/Pods-TF1Sample-TF1SampleUITests.release.xcconfig"; sourceTree = "<group>"; };
-		76CBB6292C403C7500760CF4 /* ReactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModel.swift; sourceTree = "<group>"; };
-		76CBB62B2C40521200760CF4 /* ReactionViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionViewModelFactory.swift; sourceTree = "<group>"; };
-		76CBB62D2C40757300760CF4 /* ReactionSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionSetViewModel.swift; sourceTree = "<group>"; };
+		768469672C4ED3B00072ED71 /* LLReactionDisplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLReactionDisplayViewController.swift; sourceTree = "<group>"; };
+		768469692C503AB10072ED71 /* LLCommentaryCardReactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLCommentaryCardReactionViewController.swift; sourceTree = "<group>"; };
+		76CBB6292C403C7500760CF4 /* LLReactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLReactionViewModel.swift; sourceTree = "<group>"; };
+		76CBB62B2C40521200760CF4 /* LLReactionViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLReactionViewModelFactory.swift; sourceTree = "<group>"; };
+		76CBB62D2C40757300760CF4 /* LLReactionSetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLReactionSetViewModel.swift; sourceTree = "<group>"; };
 		76CBB6302C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLTextQuizWidgetViewController.swift; sourceTree = "<group>"; };
 		76CBB6322C407EDB00760CF4 /* LLTextChoiceWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLTextChoiceWidgetView.swift; sourceTree = "<group>"; };
 		76FEEC342C4846B100CA4E3B /* TNTDigital-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TNTDigital-Regular.ttf"; sourceTree = "<group>"; };
 		76FEEC352C4846B100CA4E3B /* TNTDigital-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TNTDigital-Bold.ttf"; sourceTree = "<group>"; };
 		76FEEC362C4846B100CA4E3B /* TNTDigital-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TNTDigital-Medium.ttf"; sourceTree = "<group>"; };
+		76FEEC3B2C485E1900CA4E3B /* LLReactionCountDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLReactionCountDisplayView.swift; sourceTree = "<group>"; };
 		76FEEC412C4AD00200CA4E3B /* LLQuizViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLQuizViewModel.swift; sourceTree = "<group>"; };
 		76FEEC432C4AD00A00CA4E3B /* LLTextQuizWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLTextQuizWidgetView.swift; sourceTree = "<group>"; };
 		76FEEC452C4AD01500CA4E3B /* FakeQuizViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeQuizViewModel.swift; sourceTree = "<group>"; };
@@ -98,8 +104,8 @@
 		DF09614E2A5D254A00559857 /* PollWidgetViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PollWidgetViewModel.swift; sourceTree = "<group>"; };
 		DF09614F2A5D254A00559857 /* CustomTextChoiceWidgetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextChoiceWidgetView.swift; sourceTree = "<group>"; };
 		DF0961502A5D254A00559857 /* CustomTextPollWidgetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextPollWidgetViewController.swift; sourceTree = "<group>"; };
-		DF4EC0D32C22A82600FBD06D /* ReactionBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionBarViewController.swift; sourceTree = "<group>"; };
-		DF4EC0D52C22A84300FBD06D /* ReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionView.swift; sourceTree = "<group>"; };
+		DF4EC0D32C22A82600FBD06D /* LLReactionBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLReactionBarViewController.swift; sourceTree = "<group>"; };
+		DF4EC0D52C22A84300FBD06D /* LLReactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLReactionView.swift; sourceTree = "<group>"; };
 		DF82D6AA2A6A33E100E2DA66 /* CustomTextAskWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextAskWidgetViewController.swift; sourceTree = "<group>"; };
 		DF82D6AC2A6A355100E2DA66 /* CustomTextAskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextAskView.swift; sourceTree = "<group>"; };
 		DF82D6AE2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTextAskWidgetViewController.swift; sourceTree = "<group>"; };
@@ -180,6 +186,21 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		76FEEC3A2C485A0100CA4E3B /* Reactions */ = {
+			isa = PBXGroup;
+			children = (
+				DF4EC0D32C22A82600FBD06D /* LLReactionBarViewController.swift */,
+				DF4EC0D52C22A84300FBD06D /* LLReactionView.swift */,
+				76CBB62D2C40757300760CF4 /* LLReactionSetViewModel.swift */,
+				768469672C4ED3B00072ED71 /* LLReactionDisplayViewController.swift */,
+				76CBB6292C403C7500760CF4 /* LLReactionViewModel.swift */,
+				76CBB62B2C40521200760CF4 /* LLReactionViewModelFactory.swift */,
+				76FEEC3B2C485E1900CA4E3B /* LLReactionCountDisplayView.swift */,
+				768469692C503AB10072ED71 /* LLCommentaryCardReactionViewController.swift */,
+			);
+			path = Reactions;
+			sourceTree = "<group>";
+		};
 		DF0961112A5C82FF00559857 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +226,7 @@
 		DF09611C2A5C82FF00559857 /* TF1Sample */ = {
 			isa = PBXGroup;
 			children = (
+				76FEEC3A2C485A0100CA4E3B /* Reactions */,
 				76FEEC1B2C48465C00CA4E3B /* Fonts */,
 				76CBB62F2C407A7500760CF4 /* ImageQuiz */,
 				DF82D6A92A6A33B800E2DA66 /* textask */,
@@ -218,11 +240,6 @@
 				DF09612B2A5C830200559857 /* Info.plist */,
 				76FEEC452C4AD01500CA4E3B /* FakeQuizViewModel.swift */,
 				DF82D6B22A6A3AD600E2DA66 /* UIView.swift */,
-				DF4EC0D32C22A82600FBD06D /* ReactionBarViewController.swift */,
-				DF4EC0D52C22A84300FBD06D /* ReactionView.swift */,
-				76CBB62D2C40757300760CF4 /* ReactionSetViewModel.swift */,
-				76CBB6292C403C7500760CF4 /* ReactionViewModel.swift */,
-				76CBB62B2C40521200760CF4 /* ReactionViewModelFactory.swift */,
 			);
 			path = TF1Sample;
 			sourceTree = "<group>";
@@ -509,16 +526,19 @@
 			files = (
 				DF0961222A5C82FF00559857 /* ViewController.swift in Sources */,
 				DF09611E2A5C82FF00559857 /* AppDelegate.swift in Sources */,
-				76CBB62E2C40757300760CF4 /* ReactionSetViewModel.swift in Sources */,
+				76CBB62E2C40757300760CF4 /* LLReactionSetViewModel.swift in Sources */,
 				76FEEC482C4AD02800CA4E3B /* LLQuizWidgetViewModelImpl.swift in Sources */,
 				DF82D6B32A6A3AD600E2DA66 /* UIView.swift in Sources */,
-				76CBB62A2C403C7500760CF4 /* ReactionViewModel.swift in Sources */,
+				76CBB62A2C403C7500760CF4 /* LLReactionViewModel.swift in Sources */,
 				76CBB6312C407D7A00760CF4 /* LLTextQuizWidgetViewController.swift in Sources */,
-				DF4EC0D42C22A82600FBD06D /* ReactionBarViewController.swift in Sources */,
+				DF4EC0D42C22A82600FBD06D /* LLReactionBarViewController.swift in Sources */,
+				768469682C4ED3B00072ED71 /* LLReactionDisplayViewController.swift in Sources */,
 				76CBB6332C407EDB00760CF4 /* LLTextChoiceWidgetView.swift in Sources */,
+				7684696A2C503AB10072ED71 /* LLCommentaryCardReactionViewController.swift in Sources */,
 				76FEEC442C4AD00A00CA4E3B /* LLTextQuizWidgetView.swift in Sources */,
 				DF0961202A5C82FF00559857 /* SceneDelegate.swift in Sources */,
-				DF4EC0D62C22A84300FBD06D /* ReactionView.swift in Sources */,
+				76FEEC3C2C485E1900CA4E3B /* LLReactionCountDisplayView.swift in Sources */,
+				DF4EC0D62C22A84300FBD06D /* LLReactionView.swift in Sources */,
 				DF0961522A5D254A00559857 /* CustomTextChoiceWidgetView.swift in Sources */,
 				DF82D6AD2A6A355100E2DA66 /* CustomTextAskView.swift in Sources */,
 				DF0961512A5D254A00559857 /* PollWidgetViewModel.swift in Sources */,
@@ -526,7 +546,7 @@
 				DF0961532A5D254A00559857 /* CustomTextPollWidgetViewController.swift in Sources */,
 				DF82D6AF2A6A38C100E2DA66 /* BaseTextAskWidgetViewController.swift in Sources */,
 				DF82D6B12A6A3A7F00E2DA66 /* WidgetTitleView.swift in Sources */,
-				76CBB62C2C40521200760CF4 /* ReactionViewModelFactory.swift in Sources */,
+				76CBB62C2C40521200760CF4 /* LLReactionViewModelFactory.swift in Sources */,
 				76FEEC462C4AD01500CA4E3B /* FakeQuizViewModel.swift in Sources */,
 				76FEEC422C4AD00200CA4E3B /* LLQuizViewModel.swift in Sources */,
 			);
