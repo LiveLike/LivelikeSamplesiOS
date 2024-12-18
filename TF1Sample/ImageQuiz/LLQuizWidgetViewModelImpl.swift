@@ -41,13 +41,24 @@ class LLQuizWidgetViewModelImpl: LLQuizViewModel {
         guard !self.isAnswerSubmitted else { return }
         self.model.lockInAnswer(
             choiceID: selectedChoiceID
-        ) { result in
+        ) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .failure:
                 break
             case .success:
                 self.isAnswerSubmitted = true
                 self.delegate?.answerSubmitted()
+                
+                model.choices.forEach { choice in
+                    if choice.id == selectedChoiceID {
+                        let votePercentage = Float(choice.answerCount + 1) / Float(self.model.totalAnswerCount + 1)
+                        self.delegate?.votePercentageDidChange(choiceID: choice.id, votePercentage: votePercentage)
+                    } else {
+                        let votePercentage = Float(choice.answerCount) / Float(self.model.totalAnswerCount + 1)
+                        self.delegate?.votePercentageDidChange(choiceID: choice.id, votePercentage: votePercentage)
+                    }
+                }
             }
         }
     }
